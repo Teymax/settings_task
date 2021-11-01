@@ -6,21 +6,20 @@ import { useOptions } from '../hooks/useOptions'
 export const Editor = ({item, index}) => {
   const editorRef = useRef(null);
   const { fillOptions, options } = useOptions();
+  const newOptions = {...options};
 
   const handlerText = () => {
-    const newOptions = {...options};
 
     if (editorRef.current) {
       newOptions.email.options[0].value[index].text = editorRef.current.getContent();
-      fillOptions(newOptions);
     }
   };
-
+  // fillOptions(newOptions);
+  
   return (
     <>
       <TextEditor
         onInit={(evt, editor) => editorRef.current = editor}
-        onChange={handlerText}
         initialValue={item.text}
         init={{
           height: 500,
@@ -36,6 +35,8 @@ export const Editor = ({item, index}) => {
           'removeformat | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
+        onEditorChange={handlerText}
+        onPointerLeave={()=> fillOptions(newOptions)}
       />
     </>
   );
