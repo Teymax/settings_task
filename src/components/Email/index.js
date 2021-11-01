@@ -5,39 +5,51 @@ import { useOptions } from '../hooks/useOptions'
 import { Editor } from './Editor'
 
 export const Email = () => {
-  const { options } = useOptions();
+  const { fillOptions, options } = useOptions();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const showContext = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  const handlerTitle = (index, event) => {
+    const newOptions = {...options};
+    newOptions.email.options[0].value[index].title = event.target.value;
+    fillOptions(newOptions);
+  };
  
   return (
     <Row className="pt-2 justify-content-end">
       <Col sm={3}>
-        <Form.Label className="mb-0">{options.email.options[0].title}</Form.Label>
-        <p className="text-secondary">{options.email.options[0].description}</p>
+        <Form.Label className="mb-0">{options.email?.options[0].title}</Form.Label>
+        <p className="text-secondary">{options.email?.options[0].description}</p>
       </Col>
 
       <Col sm={9} className="mt-3 ">
       {
-        options.email.options[0].value.map((item, index) => {
+        options.email?.options[0].value.map((item, index) => {
           return (
             <div className="mb-3" key={index}>
               <div className="d-flex justify-content-between">
                 <div className="form-check form-switch">
-                  <input className="form-check-input" onClick={() => showContext(index)} type="checkbox" id={item}/>
+                  <input className="form-check-input" onClick={() => showContext(index)} type="checkbox" id={index}/>
                   {/* <input className={activeIndex === index ? "form-check-input:checked" : "form-check-input"}  onClick={() => showContext(index)} type="checkbox" id={item}/> */}
-                  <label className="form-check-label" htmlFor={item}>{item.name}</label>
+                  <label className="form-check-label" htmlFor={index}>{item.name}</label>
                 </div>
-                <label className="form-check-label text-primary" htmlFor={item}>Edit template</label>
+                <label className="form-check-label text-primary" htmlFor={index}>Edit template</label>
               </div>
 
               <div className={activeIndex === index ? "d-block" : "d-none"} >
                 <Col sm={9}>
-                  <Form.Control size="lg" className="mt-3 mb-4" type="text" defaultValue={item.title} />
+                  <Form.Control 
+                    size="lg" 
+                    className="mt-3 mb-4" 
+                    type="text" 
+                    defaultValue={item.title}
+                    onChange={e => handlerTitle(index, e)}
+                  />
                 </Col>
-                <Editor item={item}/>
+                <Editor item={item} index={index}/>
               </div>
             </div>
           )

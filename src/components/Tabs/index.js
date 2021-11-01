@@ -17,12 +17,12 @@ export const Tabs = () => {
           <Nav variant="tabs" className="flex-column mt-5">
             <Col md={8}>
               <Nav.Item  className="m-2 text-grey">
-                <Nav.Link eventKey="first">{options.main.name}</Nav.Link>
+                <Nav.Link eventKey="first">{options.main?.name}</Nav.Link>
               </Nav.Item>
             </Col>
             <Col md={8}>
               <Nav.Item className="m-2 text-grey">
-                <Nav.Link eventKey="second">{options.email.name}</Nav.Link>
+                <Nav.Link eventKey="second">{options.email?.name}</Nav.Link>
               </Nav.Item>
             </Col>
           </Nav>

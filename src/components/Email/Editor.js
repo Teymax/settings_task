@@ -3,14 +3,16 @@ import { Editor as TextEditor } from '@tinymce/tinymce-react';
 
 import { useOptions } from '../hooks/useOptions'
 
-export const Editor = ({item}) => {
+export const Editor = ({item, index}) => {
   const editorRef = useRef(null);
   const { fillOptions, options } = useOptions();
 
-  const log = () => {
+  const handlerText = () => {
+    const newOptions = {...options};
+
     if (editorRef.current) {
-      fillOptions(editorRef.current.getContent());
-      console.log(options);
+      newOptions.email.options[0].value[index].text = editorRef.current.getContent();
+      fillOptions(newOptions);
     }
   };
 
@@ -18,7 +20,7 @@ export const Editor = ({item}) => {
     <>
       <TextEditor
         onInit={(evt, editor) => editorRef.current = editor}
-        onChange={log}
+        onChange={handlerText}
         initialValue={item.text}
         init={{
           height: 500,
