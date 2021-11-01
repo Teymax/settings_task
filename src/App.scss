@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #f8f9fa;
+}
+
+.nav-tabs {
+  border: none;
+  .nav-link {
+    color: #495057;
+  }
+}
+
+.border-left-0 {
+  border-left: none;
+}
+
+input,
+select {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #ced4da !important;
+}
