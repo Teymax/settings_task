@@ -30,16 +30,19 @@ const initialState = {
           description: 'Description tor this',
           value: [
             {
+              checked: true,
               name: 'New booking',
               title: 'New booking title',
               text: '<p>Hello&nbsp;<strong>world!</strong></p>',
             },
             {
+              checked: false,
               name: 'Reminder',
               title: 'Reminder title',
               text: '<p>Hello&nbsp;<strong>world!</strong></p>',
             },
             {
+              checked: false,
               name: 'Register',
               title: 'Register title',
               text: '<p>Hello&nbsp;<strong>world!</strong></p>',

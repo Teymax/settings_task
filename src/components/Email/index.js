@@ -7,13 +7,16 @@ import { Editor } from './Editor'
 export const Email = () => {
   const { fillOptions, options } = useOptions();
   const [activeIndex, setActiveIndex] = useState(null);
+  const newOptions = {...options};
 
   const showContext = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
+
+    newOptions.email.options[0].value[index].checked = true;
+    fillOptions(newOptions);
   };
 
   const handlerTitle = (index, event) => {
-    const newOptions = {...options};
     newOptions.email.options[0].value[index].title = event.target.value;
     fillOptions(newOptions);
   };
@@ -32,8 +35,14 @@ export const Email = () => {
             <div className="mb-3" key={index}>
               <div className="d-flex justify-content-between">
                 <div className="form-check form-switch">
-                  <input className="form-check-input" onClick={() => showContext(index)} type="checkbox" id={index}/>
-                  {/* <input className={activeIndex === index ? "form-check-input:checked" : "form-check-input"}  onClick={() => showContext(index)} type="checkbox" id={item}/> */}
+                  <input 
+                    className="form-check-input" 
+                    checked={item.checked} 
+                    onClick={() => showContext(index)} 
+                    onChange={()=>{}}
+                    type="checkbox" 
+                    id={index}
+                  />
                   <label className="form-check-label" htmlFor={index}>{item.name}</label>
                 </div>
                 <label className="form-check-label text-primary" htmlFor={index}>Edit template</label>
