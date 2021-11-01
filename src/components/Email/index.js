@@ -12,7 +12,13 @@ export const Email = () => {
   const showContext = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
 
-    newOptions.email.options[0].value[index].checked = true;
+    if (!newOptions.email.options[0].value[index].checked) {
+      newOptions.email.options[0].value.map(item => item.checked = false);
+      newOptions.email.options[0].value[index].checked = true
+    } else {
+      newOptions.email.options[0].value.map(item => item.checked = false)
+    }
+
     fillOptions(newOptions);
   };
 
