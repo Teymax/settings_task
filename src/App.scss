@@ -12,13 +12,16 @@ body {
   }
 }
 
-.border-left-0 {
-  border-left: none;
-}
-
 input,
 select {
   box-shadow: none !important;
   outline: none !important;
   border-color: #ced4da !important;
+}
+
+.css-1s2u09g-control,
+.css-b62m3t-container {
+  padding: 0.25em !important;
+  outline: none !important;
+  box-shadow: none !important;
 }

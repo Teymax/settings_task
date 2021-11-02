@@ -11,16 +11,15 @@ export const Editor = ({item, index}) => {
   const handlerText = () => {
 
     if (editorRef.current) {
-      newOptions.email.options[0].value[index].text = editorRef.current.getContent();
+      newOptions.options.email.options[0].values[index].text = editorRef.current.getContent();
     }
   };
-  // fillOptions(newOptions);
   
   return (
     <>
       <TextEditor
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue={item.text}
+        initialValue={item.options[1].value}
         init={{
           height: 500,
           menubar: true,
