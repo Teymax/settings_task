@@ -6,19 +6,15 @@ import { useOptions } from '../hooks/useOptions';
 import { useStates } from '../hooks/useStates';
 
 export const Options = ({index}) => {
-  const { fillOptions, options } = useOptions();
+  const { options } = useOptions();
   const { fillState, state } = useStates();
 
-  // console.log(state);
-
-  const newOptions = {...options};
   const [inputVal, setInputVal] = useState(state.cur);
   const [check, setCheck] = useState(state.time);
 
   const handleSelect = (value) => {
-    newOptions.options.main.options[index].value = value;
-    console.log(value);
-    fillOptions(newOptions);
+    state.role = value;
+    fillState(state);
   }
 
   const handleTitle = (e) => {
@@ -57,7 +53,7 @@ export const Options = ({index}) => {
                 isMulti={multiple} 
                 options={values} 
                 onChange={handleSelect}
-                defaultValue={values[0]}
+                defaultValue={state.role}
               />
             </Col>
         }

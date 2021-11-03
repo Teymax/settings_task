@@ -1,25 +1,26 @@
 import React, { useRef } from 'react';
 import { Editor as TextEditor } from '@tinymce/tinymce-react';
 
-import { useOptions } from '../hooks/useOptions'
+import { useStates } from '../hooks/useStates';
 
 export const Editor = ({item, index}) => {
   const editorRef = useRef(null);
-  const { fillOptions, options } = useOptions();
-  const newOptions = {...options};
+  const { fillState, state } = useStates();
+
+  // console.log(item);
+
 
   const handlerText = () => {
-
     if (editorRef.current) {
-      newOptions.options.email.options[0].values[index].text = editorRef.current.getContent();
+      state[item.name] = editorRef.current.getContent();
     }
   };
-  
+
   return (
     <>
       <TextEditor
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue={item.options[1].value}
+        initialValue={item.value}
         init={{
           height: 500,
           menubar: true,
@@ -35,7 +36,7 @@ export const Editor = ({item, index}) => {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
         onEditorChange={handlerText}
-        onPointerLeave={()=> fillOptions(newOptions)}
+        onPointerLeave={()=> fillState(state)}
       />
     </>
   );

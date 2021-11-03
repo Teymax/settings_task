@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
 import { useOptions } from '../hooks/useOptions';
+import { useStates } from '../hooks/useStates';
+
 import { Editor } from './Editor';
 
 export const Options = ({iOpt}) => {
   const { fillOptions, options } = useOptions();
+  const { fillState, state } = useStates();
+
   const [activeIndex, setActiveIndex] = useState(null);
   const newOptions = {...options};
 
@@ -24,7 +28,8 @@ export const Options = ({iOpt}) => {
 
   const handlerTitle = (index, event) => {
     newOptions.options.email.options[iOpt].values[index].title = event.target.value;
-    fillOptions(newOptions);
+    state[newOptions.options.email.options[iOpt].values[index].options[0].name] = event.target.value
+    fillState(state);
   };
 
   const {
@@ -69,7 +74,7 @@ export const Options = ({iOpt}) => {
                     onChange={e => handlerTitle(index, e)}
                   />
                 </Col>
-                <Editor item={item} index={index}/>
+                <Editor item={newOptions.options.email.options[iOpt].values[index].options[1]} index={index} />
               </div>
             </div>
           )

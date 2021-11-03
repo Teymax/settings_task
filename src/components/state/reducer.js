@@ -3,11 +3,10 @@ import { types } from './types';
 const initialState = {
   data: {
     role: [
-    'shop_manager'
+      {label: 'Shop Manager', value: 'shop_manager'}
     ],
     cur: "$",
     time: 1,
-    e_new: "",
     e_new_title: "",
     e_new_template: "",
     e_rem_title: "Reminder Title",
