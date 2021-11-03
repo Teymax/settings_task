@@ -26,6 +26,7 @@ export const Options = ({iOpt}) => {
     newOptions.options.email.options[iOpt].values[index].title = event.target.value;
     fillOptions(newOptions);
   };
+
   return (
     <Row className="pt-2 justify-content-end">
       <Col sm={3}>
@@ -43,8 +44,7 @@ export const Options = ({iOpt}) => {
                   <input 
                     className="form-check-input" 
                     checked={item.checked} 
-                    onClick={() => showContext(index)} 
-                    onChange={()=>{}}
+                    onChange={() => showContext(index)} 
                     type="checkbox" 
                     id={index}
                   />

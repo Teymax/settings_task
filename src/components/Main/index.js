@@ -8,6 +8,8 @@ export const Main = () => {
 
   const { options } = useOptions();
 
+  console.log(options);
+
   return (
     <>
       {options.options.main.options.map((item, index) => 

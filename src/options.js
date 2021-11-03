@@ -14,6 +14,10 @@ export const options = {
         "order": 10, // option sort order
         "values": [ // select values
           {
+            "label": "Shop Manager",
+            "value": "shop_manager"
+          },
+          {
             "label": "Translator",
             "value": "translator"
           },

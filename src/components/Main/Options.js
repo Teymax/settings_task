@@ -8,7 +8,7 @@ export const Options = ({index}) => {
   const { fillOptions, options } = useOptions();
   const newOptions = {...options};
   const [inputVal, setInputVal] = useState(options.options.main.options[index].value);
-  let isCheck = options.options.main.options[2]?.values[0].value;
+  let isCheck = options.options.main.options[2]?.value;
   const [check, setCheck] = useState(isCheck);
 
   const handleTitle = (e) => {
@@ -40,7 +40,12 @@ export const Options = ({index}) => {
         {
           options.options.main.options[index].type === "select" &&
             <Col md={6} className="mb-0">
-              <Select isMulti options={options.options.main.options[index].values} onChange={handleSelect}/>
+              <Select 
+                isMulti={options.options.main.options[index].multiple} 
+                options={options.options.main.options[index].values} 
+                onChange={handleSelect}
+                defaultValue={options.options.main.options[index].values[0]}
+              />
             </Col>
         }
         {
