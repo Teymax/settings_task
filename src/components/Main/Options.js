@@ -12,8 +12,10 @@ export const Options = ({index}) => {
   const [inputVal, setInputVal] = useState(state.cur);
   const [check, setCheck] = useState(state.time);
 
-  const handleSelect = (value) => {
-    state.role = value;
+  const handleSelect = (values) => {
+    const selectedValues = [];
+    values.filter(role => selectedValues.push(role.value))
+    state.role = selectedValues;
     fillState(state);
   }
 
