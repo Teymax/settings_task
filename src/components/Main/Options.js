@@ -8,7 +8,6 @@ import { useStates } from '../hooks/useStates';
 export const Options = ({index}) => {
   const { fillOptions, options } = useOptions();
   const { fillState, state } = useStates();
-  const newState = {...state};
 
   // console.log(state);
 
@@ -24,14 +23,14 @@ export const Options = ({index}) => {
 
   const handleTitle = (e) => {
     setInputVal(e.target.value);
-    newState.cur = e.target.value;
-    fillState(newState);
+    state.cur = e.target.value;
+    fillState(state);
   }
 
   const handleCheck = () => {
     setCheck(!check)
-    newState.time = !check;
-    fillState(newState);
+    state.time = !check;
+    fillState(state);
   }
 
   const { 
