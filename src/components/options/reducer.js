@@ -1,5 +1,5 @@
 import { types } from './types';
-import { options } from '../options'
+import { options } from '../../options'
 
 const initialState = {
   data: {options}

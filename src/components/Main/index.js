@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Options } from '../Options'
+import { Options } from './Options'
 
 import { useOptions } from '../hooks/useOptions'
 
