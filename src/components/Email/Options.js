@@ -16,24 +16,23 @@ export const Options = ({iOpt}) => {
   } = options.options.email?.options[iOpt];
 
   const [activeIndex, setActiveIndex] = useState(values.findIndex(item => item.value === 1));
-  const newOptions = {...options};
 
   const showContext = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
 
-    if (!newOptions.options.email.options[iOpt].values[index].value) {
-      newOptions.options.email.options[iOpt].values.map(item => item.value = false);
-      newOptions.options.email.options[iOpt].values[index].value = true;
+    if (!values[index].value) {
+      values.map(item => item.value = false);
+      values[index].value = true;
     } else {
-      newOptions.options.email.options[iOpt].values.map(item => item.value = false);
+      values.map(item => item.value = false);
     }
 
-    fillOptions(newOptions);
+    fillOptions(options);
   };
 
   const handlerTitle = (index, event) => {
-    newOptions.options.email.options[iOpt].values[index].title = event.target.value;
-    state[newOptions.options.email.options[iOpt].values[index].options[0].name] = event.target.value
+    values[index].title = event.target.value;
+    state[values[index].options[0].name] = event.target.value
     fillState(state);
   };
 
@@ -73,7 +72,7 @@ export const Options = ({iOpt}) => {
                     onChange={e => handlerTitle(index, e)}
                   />
                 </Col>
-                <Editor item={newOptions.options.email.options[iOpt].values[index].options[1]} index={index} />
+                <Editor item={values[index].options[1]} index={index} />
               </div>
             </div>
           )
