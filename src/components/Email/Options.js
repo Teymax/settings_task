@@ -9,18 +9,23 @@ import { Editor } from './Editor';
 export const Options = ({iOpt}) => {
   const { fillOptions, options } = useOptions();
   const { fillState, state } = useStates();
+  const {
+    title,
+    description,
+    values
+  } = options.options.email?.options[iOpt];
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(values.findIndex(item => item.value === 1));
   const newOptions = {...options};
 
   const showContext = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
 
-    if (!newOptions.options.email.options[iOpt].values[index].checked) {
-      newOptions.options.email.options[iOpt].values.map(item => item.checked = false);
-      newOptions.options.email.options[iOpt].values[index].checked = true;
+    if (!newOptions.options.email.options[iOpt].values[index].value) {
+      newOptions.options.email.options[iOpt].values.map(item => item.value = false);
+      newOptions.options.email.options[iOpt].values[index].value = true;
     } else {
-      newOptions.options.email.options[iOpt].values.map(item => item.checked = false);
+      newOptions.options.email.options[iOpt].values.map(item => item.value = false);
     }
 
     fillOptions(newOptions);
@@ -31,12 +36,6 @@ export const Options = ({iOpt}) => {
     state[newOptions.options.email.options[iOpt].values[index].options[0].name] = event.target.value
     fillState(state);
   };
-
-  const {
-    title,
-    description,
-    values
-  } = options.options.email?.options[iOpt];
 
   return (
     <Row className="pt-2 justify-content-end">
@@ -54,7 +53,7 @@ export const Options = ({iOpt}) => {
                 <div className="form-check form-switch">
                   <input 
                     className="form-check-input" 
-                    checked={item.checked || ''} 
+                    checked={item.value || ''}
                     onChange={() => showContext(index)} 
                     type="checkbox" 
                     id={index}
@@ -64,7 +63,7 @@ export const Options = ({iOpt}) => {
                 <label className="form-check-label text-primary" htmlFor={index}>Edit template</label>
               </div>
 
-              <div className={activeIndex === index ? "d-block" : "d-none"} >
+              <div className={activeIndex === index  ? "d-block" : "d-none"} >
                 <Col sm={9}>
                   <Form.Control 
                     size="lg" 
