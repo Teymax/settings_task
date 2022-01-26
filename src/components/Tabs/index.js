@@ -17,12 +17,12 @@ export const Tabs = () => {
           <Nav variant="tabs" className="flex-column mt-5">
             <Col md={8}>
               <Nav.Item  className="m-2 text-grey">
-                <Nav.Link eventKey="first">{options.options.main?.name}</Nav.Link>
+                <Nav.Link eventKey="first">{options.options.main.name}</Nav.Link>
               </Nav.Item>
             </Col>
             <Col md={8}>
               <Nav.Item className="m-2 text-grey">
-                <Nav.Link eventKey="second">{options.options.email?.name}</Nav.Link>
+                <Nav.Link eventKey="second">{options.options.email.name}</Nav.Link>
               </Nav.Item>
             </Col>
           </Nav>
@@ -30,10 +30,14 @@ export const Tabs = () => {
         <Col sm={9}>
           <Tab.Content className="mt-5">
             <Tab.Pane eventKey="first">
-              <Main />
+              <Main
+                keyTabs={'main'}
+              />
             </Tab.Pane>
             <Tab.Pane eventKey="second">
-              <Email />
+              <Email
+                keyTabs={'email'}
+              />
             </Tab.Pane>
           </Tab.Content>
         </Col>

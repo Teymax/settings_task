@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { Options } from './Options'
+import { Options } from '../OptionsC'
 
 import { useOptions } from '../hooks/useOptions'
 
-export const Main = () => {
+export const Main = ({keyTabs}) => {
 
   const { options } = useOptions();
 
   return (
     <>
-      {options.options.main.options.map((item, index) => 
+      {options.options[keyTabs].options.map((item, index) => 
         <Options 
           key={index}
           index={index}
-          isMain={true}
+          keyTabs={keyTabs}
         />
       )}
     </>

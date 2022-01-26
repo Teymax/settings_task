@@ -1,20 +1,21 @@
 import React from 'react';
-import { Options } from './Options'
+import { Options } from '../OptionsC'
 
 import { useOptions } from '../hooks/useOptions';
 
-export const Email = () => {
+export const Email = ({keyTabs}) => {
   const { options } = useOptions();
+
   return (
     <>
-      {
-        options.options.email?.options.map((item, index) => 
-          <Options 
-            key={index}   
-            iOpt={index}   
-          />
-        )
-      }
+      {options.options[keyTabs].options.map((item, index) => 
+        <Options 
+          key={index}   
+          index={index}
+          iOpt={index}
+          keyTabs={keyTabs}   
+        />
+      )}
     </>
   )
 }
